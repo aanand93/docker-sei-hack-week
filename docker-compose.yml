@@ -1,0 +1,40 @@
+version: '3'
+services:
+  react:
+    build: ./client
+    container_name: react
+    ports:
+      - '8000:8000'
+    volumes:
+      - ./client/src:/usr/src/app/src
+    networks:
+      - mern-app
+  api:
+    build: ./server
+    container_name: api
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./server/controllers:/usr/src/app/controllers
+      - ./server/db:/usr/src/app/db
+      - ./server/models:/usr/src/app/models
+      - ./server/routes:/usr/src/app/routes
+    networks:
+      - mern-app
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo:3.6.19-xenial
+    container_name: mongo
+    ports:
+      - '27017:27017'
+    networks:
+      - mern-app
+    volumes:
+      - mongo-data:/data/db
+networks:
+  mern-app:
+    driver: bridge
+volumes:
+  mongo-data:
+    driver: local
