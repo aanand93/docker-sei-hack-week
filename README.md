@@ -6,7 +6,7 @@
 2. in command line run:
    'docker-compose up -d --build'
 3. once all three images are running:
-   1. check localhost: 3000 to confirm backend is running. It should display "Hello World" on the screen.
+   1. check localhost:3000 to confirm backend is running. It should display "Hello World" on the screen.
    2. check localhost:8000 to run the app in your browser.
 
 ## DockerHub
